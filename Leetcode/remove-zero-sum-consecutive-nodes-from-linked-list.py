@@ -22,21 +22,28 @@ class Solution:
             if cur_sum in sum_dict.values():
                 for key, value in sum_dict.items():
                     if value == cur_sum:
-                        for j in range(key + 1, i):
-                            del sum_dict[j]
-                        cur_sum -+ arr[i]
+                        for j in range(key+1, i):
+                            print(sum_dict, key)
+                            if j in sum_dict:
+                                del sum_dict[j]
+                            else:
+                                continue
+                        cur_sum = sum_dict[key]
                         break
             else:
                 sum_dict[i] = cur_sum
 
-            print(sum_dict)   
-        # # Create a new linked list with the values corresponding to the keys in the dictionary
-        # new_arr = [arr[key] for key in sum_dict.keys() if key != -1]
-        # # Return the head of the new linked list
-        # return create_linked_list(new_arr)
+            print(sum_dict)
+            
+        # Create a new linked list with the values corresponding to the keys in the dictionary
+        new_arr = [arr[key] for key in sum_dict.keys() if key != -1]
+        # Return the head of the new linked list
+        return create_linked_list(new_arr)
 
 # Helper function to create a linked list from a list
 def create_linked_list(arr):
+    if len(arr) == 0:
+        return []
     head = ListNode(arr[0])
     current = head
     for value in arr[1:]:
@@ -45,6 +52,8 @@ def create_linked_list(arr):
     return head
 
 # Example input
-head = create_linked_list([1,2,3,-3,-2])
+head = create_linked_list([0,1,-1])
 solution = Solution()
 solution.removeZeroSumSublists(head)
+
+    
